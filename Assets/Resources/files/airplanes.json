@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "My_Airplane",
+    "attributes": {
+      "maxHealth": 100,
+      "speed": 100,
+      "minSpeed": 100,
+      "maxSpeed": 300,
+      "specialDamage": 50.0,
+      "basicDamage": 30.0
+    }
+  },
+  {
+    "id": 2,
+    "name": "My_Airplane",
+    "attributes": {
+      "maxHealth": 100,
+      "speed": 100,
+      "minSpeed": 100,
+      "maxSpeed": 300,
+      "specialDamage": 50.0,
+      "basicDamage": 30.0
+    }
+  }
+]
