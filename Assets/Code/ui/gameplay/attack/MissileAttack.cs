@@ -22,9 +22,7 @@ public class MissileAttack : Attack
     public BaseFire rocketPrefab;
 
     public override void makeAttack() {
-        BaseFire temp = Instantiate(rocketPrefab, throwPoint.transform.position, transform.rotation * Quaternion.Euler(rocketRotation));
-        temp.damage = damage;
-        //temp.transform.rotation = Quaternion.LookRotation(-transform.forward);
+        BaseFire temp = createFire(rocketPrefab, throwPoint.transform.position, transform.rotation * Quaternion.Euler(rocketRotation));
         Rigidbody rb = temp.GetComponent<Rigidbody>();
         if (rb != null)
             rb.AddForce(Quaternion.AngleAxis(rocketRotation.y, transform.up) * transform.forward * throwForce, ForceMode.VelocityChange);

@@ -1,68 +1,159 @@
 fileFormatVersion: 2
 guid: 499a337f467d51a4faf75881db1f2e90
-timeCreated: 1507389830
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: ElevatorLeft
-    100002: ElevatorRight
-    100004: //RootNode
-    100006: Fuselage
-    100008: LeftFlap
-    100010: LeftRudder
-    100012: RightFlap
-    100014: RightRudder
-    400000: ElevatorLeft
-    400002: ElevatorRight
-    400004: //RootNode
-    400006: Fuselage
-    400008: LeftFlap
-    400010: LeftRudder
-    400012: RightFlap
-    400014: RightRudder
-    2300000: ElevatorLeft
-    2300002: ElevatorRight
-    2300004: Fuselage
-    2300006: LeftFlap
-    2300008: LeftRudder
-    2300010: RightFlap
-    2300012: RightRudder
-    3300000: ElevatorLeft
-    3300002: ElevatorRight
-    3300004: Fuselage
-    3300006: LeftFlap
-    3300008: LeftRudder
-    3300010: RightFlap
-    3300012: RightRudder
-    4300000: Fuselage
-    4300002: ElevatorLeft
-    4300004: ElevatorRight
-    4300006: LeftFlap
-    4300008: RightFlap
-    4300010: LeftRudder
-    4300012: RightRudder
-    9500000: //RootNode
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ElevatorLeft
+  - first:
+      1: 100002
+    second: ElevatorRight
+  - first:
+      1: 100004
+    second: //RootNode
+  - first:
+      1: 100006
+    second: Fuselage
+  - first:
+      1: 100008
+    second: LeftFlap
+  - first:
+      1: 100010
+    second: LeftRudder
+  - first:
+      1: 100012
+    second: RightFlap
+  - first:
+      1: 100014
+    second: RightRudder
+  - first:
+      4: 400000
+    second: ElevatorLeft
+  - first:
+      4: 400002
+    second: ElevatorRight
+  - first:
+      4: 400004
+    second: //RootNode
+  - first:
+      4: 400006
+    second: Fuselage
+  - first:
+      4: 400008
+    second: LeftFlap
+  - first:
+      4: 400010
+    second: LeftRudder
+  - first:
+      4: 400012
+    second: RightFlap
+  - first:
+      4: 400014
+    second: RightRudder
+  - first:
+      23: 2300000
+    second: ElevatorLeft
+  - first:
+      23: 2300002
+    second: ElevatorRight
+  - first:
+      23: 2300004
+    second: Fuselage
+  - first:
+      23: 2300006
+    second: LeftFlap
+  - first:
+      23: 2300008
+    second: LeftRudder
+  - first:
+      23: 2300010
+    second: RightFlap
+  - first:
+      23: 2300012
+    second: RightRudder
+  - first:
+      33: 3300000
+    second: ElevatorLeft
+  - first:
+      33: 3300002
+    second: ElevatorRight
+  - first:
+      33: 3300004
+    second: Fuselage
+  - first:
+      33: 3300006
+    second: LeftFlap
+  - first:
+      33: 3300008
+    second: LeftRudder
+  - first:
+      33: 3300010
+    second: RightFlap
+  - first:
+      33: 3300012
+    second: RightRudder
+  - first:
+      43: 4300000
+    second: Fuselage
+  - first:
+      43: 4300002
+    second: ElevatorLeft
+  - first:
+      43: 4300004
+    second: ElevatorRight
+  - first:
+      43: 4300006
+    second: LeftFlap
+  - first:
+      43: 4300008
+    second: RightFlap
+  - first:
+      43: 4300010
+    second: LeftRudder
+  - first:
+      43: 4300012
+    second: RightRudder
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: 717159ead10d5c441a597d0878b724a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 07 - Default
+    second: {fileID: 2100000, guid: 886e08fc114fb384b877eae7ccc97f61, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -70,13 +161,23 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -86,10 +187,14 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -99,14 +204,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

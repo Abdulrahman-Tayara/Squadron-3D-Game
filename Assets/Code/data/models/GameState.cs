@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 public class GameState {
+    public float health;
     public int difficultyLevel;
-    public int health;
     public int coins;
     public int score;
 
-    public GameState(int difficultyLevel, int health, int coins, int score) {
-        this.difficultyLevel = difficultyLevel;
+    public GameState(float health, int difficultyLevel, int coins, int score) {
         this.health = health;
+        this.difficultyLevel = difficultyLevel;
         this.coins = coins;
         this.score = score;
     }

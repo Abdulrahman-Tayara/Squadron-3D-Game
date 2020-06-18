@@ -9,6 +9,7 @@ TagManager:
   - Fire
   - Enemy
   - Generator
+  - EnemyMoveSpot
   layers:
   - Default
   - TransparentFX

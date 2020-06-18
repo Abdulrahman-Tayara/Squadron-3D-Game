@@ -9,22 +9,25 @@ public class DoubleMissileAttack : Attack
     [SerializeField]
     private float fireRate = 5f;
 
-    private float turn;
+    private int turn;
 
+
+    private GameObject[] missileAttacks;
+
+    public void Start()
+    {
+        missileAttacks = GameObject.FindGameObjectsWithTag("MissileAttack");
+    }
     public override void makeAttack() {
         if (Time.time < nextTimeToFire && turn == 0)
             return;
         nextTimeToFire = Time.time + 1f / fireRate;
-        if (turn == 0) {
-            MissileAttack missileLauncher1 = transform.Find("missileLauncher_1").GetComponent<MissileAttack>();
-            missileLauncher1.damage = damage;
-            missileLauncher1.makeAttack();
-        } else {
-            MissileAttack missileLauncher4 = transform.Find("missileLauncher_4").GetComponent<MissileAttack>();
-            missileLauncher4.damage = damage;
-            missileLauncher4.makeAttack();
-        }
-        turn = 1 - turn;
+        Attack missileLauncher1 = missileAttacks[turn].GetComponent<Attack>();
+        missileLauncher1.damage = damage;
+        missileLauncher1.makeAttack();
+        turn++;
+        if (turn >= missileAttacks.Length)
+            turn = 0;
     }
 
 }

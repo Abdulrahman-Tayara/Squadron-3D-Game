@@ -12,10 +12,11 @@ public class EnemiesManager : MonoBehaviour {
 
     private int currentEnemies = 0;
 
-    private Enemy enemy = new Enemy(100f, 30f, 10f, 400f);
+    private Enemy enemy = new Enemy(100f, 30f, 10f, 40f);
 
     void Start() {
-
+        EventBus<EnemyDeadEvent>.getInstance().register(enemyEvent => currentEnemies--);
+        StartCoroutine(startGenerating());
     }
 
     
@@ -23,14 +24,20 @@ public class EnemiesManager : MonoBehaviour {
         if (enemyGenerators == null || enemyGenerators.Length == 0) {
             enemyGenerators = GameObject.FindObjectsOfType<EnemiesGenerator>();
             return;
-        }
-        if (enemyGenerators.Length != 0 && currentEnemies < maxEnemies && Time.frameCount % 360 == 0) {
-            generateEnemy();
+        }        
+    }
+
+    private IEnumerator startGenerating() {
+        while(true) {
+            if (enemyGenerators != null && enemyGenerators.Length != 0 && currentEnemies < maxEnemies) {
+                generateEnemy();
+                yield return new WaitForSeconds(2);
+            }
+            yield return null;
         }
     }
 
-
-    void generateEnemy() {
+    private void generateEnemy() {
         enemyGenerators[lastGenerator].generateNewEnemy(enemy.clone());
         lastGenerator = (lastGenerator + 1) % enemyGenerators.Length;
         currentEnemies++;

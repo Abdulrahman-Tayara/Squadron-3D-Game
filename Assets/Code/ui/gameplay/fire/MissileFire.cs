@@ -34,7 +34,7 @@ public class MissileFire : BaseFire
                 rb.AddExplosionForce(Force, transform.position, radius);
             }
         }
-        Destroy(temp, prefabPlayDuration);
+        Destroy(temp.gameObject, prefabPlayDuration);
         Destroy(gameObject);
     }
 }

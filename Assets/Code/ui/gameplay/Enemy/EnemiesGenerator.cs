@@ -18,10 +18,6 @@ public class EnemiesGenerator : MonoBehaviour {
 
     public void generateNewEnemy(Enemy enemy) {
         GameObject newEnemy = Instantiate(enemyObject, transform.position, transform.rotation);
-        EnemyMovement enemyMovement = newEnemy.GetComponent<EnemyMovement>();
-        enemyMovement.speed = enemy.speed;
-        enemyMovement.dangerZone = enemy.dangerZone;
-        EnemyAttack enemyAttack = newEnemy.GetComponent<EnemyAttack>();
-        enemyAttack.attack.damage = enemy.damage;
+        newEnemy.GetComponent<EnemyManager>().setEnemy(enemy);
     }
 }

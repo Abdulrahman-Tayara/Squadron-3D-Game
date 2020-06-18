@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class AirplaneMovment : MonoBehaviour {
 
-    private AirplaneManager airplaneManager;
-
     public CharacterController controller;
 
     private float airplaneSpeed;
@@ -19,10 +17,6 @@ public class AirplaneMovment : MonoBehaviour {
     public float minRollAngle = -45f, maxRollAngle = 45f;
     private float yaw = 0f, pitch = 0f, roll = 0f;
     public float resetRotationSpeed = 150f;
-
-    private void Start() {
-        airplaneManager = AirplaneManager.getInstance();
-    }
 
 
     private void applayForwardMovement() {
@@ -60,17 +54,12 @@ public class AirplaneMovment : MonoBehaviour {
 
     void FixedUpdate() {
         
-        //applayForwardMovement();
+        applayForwardMovement();
 
         handleRotatoin();
 
         handleBoost();
     }
-
-    private void OnCollisionEnter(Collision collision) {
-        airplaneManager.onAirplaneCollision(collision);
-    }
-
 
     public void setSpeedValues(float airplaneSpeed, float minSpeed, float maxSpeed) {
         this.airplaneSpeed = airplaneSpeed;

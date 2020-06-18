@@ -17,8 +17,7 @@ public class BasicAttack : Attack {
     }
 
     public override void makeAttack() {
-        BaseFire newBullet = Instantiate(bulletObject, transform.position + offset, transform.rotation);
-        newBullet.damage = damage;
+        BaseFire newBullet = createFire(bulletObject, transform.position + offset, transform.rotation);
         Rigidbody rigidbody = newBullet.GetComponent<Rigidbody>();
         Vector3 force = transform.forward * fireForce * Time.deltaTime;
         rigidbody.AddForce(force);

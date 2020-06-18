@@ -15,7 +15,7 @@ public class GunAttack : Attack {
     private float nextTimeToFire = 0f;
 
     [SerializeField]
-    private float throwForce = 70f;
+    private float throwForce = 600f;
 
     [SerializeField]
     private Vector3 bulletRotation;
@@ -38,31 +38,30 @@ public class GunAttack : Attack {
     [SerializeField]
     private BaseFire bulletPrefab;
 
+    private AudioSource sound;
+
+    public void Start()
+    {
+        sound = transform.GetComponent<AudioSource>();
+    }
+
 
     public override void makeAttack() {
         if (Time.time < nextTimeToFire)
             return;
         nextTimeToFire = Time.time + 1f / fireRate;
         muzzleFlash.Play();
+        if(sound != null && !sound.isPlaying)
+        {
+            sound.Play();
+        }
         //90f, -7f, 0f
-        BaseFire bullet = Instantiate(bulletPrefab, firePosition.transform.position, transform.rotation * Quaternion.Euler(bulletRotation));
-        bullet.damage = damage;
+        BaseFire bullet = createFire(bulletPrefab, firePosition.transform.position, transform.rotation * Quaternion.Euler(bulletRotation));
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         if (bulletRb != null) {
             bulletRb.AddForce(Quaternion.AngleAxis(bulletRotation.y, transform.up) * transform.forward * throwForce, ForceMode.VelocityChange);
         }
-        Destroy(bullet.gameObject, bulletLifetime);
 
-        RaycastHit hit;
-        //check if the target is in the gun range
-        if (Physics.Raycast(transform.position, transform.forward, out hit, range)) {
-            Target target = hit.transform.GetComponent<Target>();
-            if (target != null) {
-                target.takeDamage(damage);
-            }
-            if (hit.rigidbody != null) {
-                hit.rigidbody.AddForce(-hit.normal * impactForce);
-            }
-        }
+        Destroy(bullet.gameObject, bulletLifetime);
     }
 }

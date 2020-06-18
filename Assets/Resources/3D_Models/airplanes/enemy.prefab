@@ -800,11 +800,17 @@ GameObject:
   m_Component:
   - component: {fileID: 338224822939710140}
   - component: {fileID: 338224822932512074}
-  - component: {fileID: -2024299114213240171}
   - component: {fileID: -8331637731786433371}
-  - component: {fileID: 2998465127559404502}
+  - component: {fileID: 286309507233504840}
+  - component: {fileID: -2024299114213240171}
   - component: {fileID: 6303484294001353575}
   - component: {fileID: 6351082674063210172}
+  - component: {fileID: 4064508342293498946}
+  - component: {fileID: 4338476677821673868}
+  - component: {fileID: -8887565527535463273}
+  - component: {fileID: 3876490604252450995}
+  - component: {fileID: 3076157435377080377}
+  - component: {fileID: 1305499598901567578}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -858,22 +864,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-2024299114213240171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338224822939938460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b251c19d868b895478a644080a4ce7ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: -8331637731786433371}
-  rb: {fileID: 2998465127559404502}
-  speed: 0
-  dangerZone: 0
 --- !u!143 &-8331637731786433371
 CharacterController:
   m_ObjectHideFlags: 0
@@ -892,7 +882,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2998465127559404502
+--- !u!54 &286309507233504840
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -907,7 +897,22 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &-2024299114213240171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b251c19d868b895478a644080a4ce7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: -8331637731786433371}
+  rb: {fileID: 286309507233504840}
+  moveSpots: []
 --- !u!114 &6303484294001353575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,6 +940,112 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   offset: {x: 0, y: 0, z: 0}
+  attacker: {fileID: 0}
+--- !u!114 &4064508342293498946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896d1396a016a3a41b042796638351d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fighterTransform: {fileID: 0}
+--- !u!136 &4338476677821673868
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 4.1738434
+  m_Height: 34.669067
+  m_Direction: 2
+  m_Center: {x: 0.07116699, y: 2.4002228, z: -4.286316}
+--- !u!114 &-8887565527535463273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc822f17b2c7f2479965676e4186d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &3876490604252450995
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 4.4067993
+  m_Height: 30
+  m_Direction: 0
+  m_Center: {x: 0, y: -0.18902588, z: 0.59588623}
+--- !u!114 &3076157435377080377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f6c52563808e34392fc9bcd0139a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 747357005084782793, guid: 461baee3154dbd648a16a0573703e933, type: 3}
+--- !u!23 &1305499598901567578
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338224822939938460}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &338224822939938462
 GameObject:
   m_ObjectHideFlags: 0
@@ -10452,6 +10563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   offset: {x: 0, y: 0, z: 0}
+  attacker: {fileID: 0}
   range: 100
   impactForce: 30
   fireRate: 15
@@ -10538,6 +10650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   offset: {x: 0, y: 0, z: 0}
+  attacker: {fileID: 0}
   range: 100
   impactForce: 30
   fireRate: 15
