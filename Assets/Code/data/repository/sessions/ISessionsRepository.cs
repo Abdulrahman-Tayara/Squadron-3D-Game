@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+public interface ISessionsRepository {
 
-public interface IGameplayRepository {
-    Session getSavedSession();
+    Task<Session> getSavedSession();
 
-    Task<Airplane> getAirplaneById(int id);
+    Task<Session> getSessionById(int id);
+
+
+
 }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class JsonMapper {
 
-    public static JsonMapper INSTANCE = new JsonMapper();
+    private static JsonMapper INSTANCE = new JsonMapper();
 
     private JsonMapper() {
 

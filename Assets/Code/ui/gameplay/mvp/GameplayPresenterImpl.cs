@@ -9,21 +9,25 @@ namespace Assets.Code.ui.gameplay.mvp {
     class GameplayPresenterImpl : GameplayPresenter {
 
         private GameplayView view;
-        private IGameplayRepository repository;
-        public GameplayPresenterImpl(GameplayView view, IGameplayRepository repository) {
+        private IAirplanesRepository airplanesRepository;
+        private ISessionsRepository sessionRepository;
+
+        public GameplayPresenterImpl(GameplayView view, IAirplanesRepository airplanesRepository, ISessionsRepository sessionRepository) {
             this.view = view;
-            this.repository = repository;
+            this.airplanesRepository = airplanesRepository;
+            this.sessionRepository = sessionRepository;
         }
 
         public void getAirplane(int id) {
-            Task<Airplane> task = repository.getAirplaneById(id);
+            Task<Airplane> task = airplanesRepository.getAirplaneById(id);
             Task.WaitAll(task);
             view.setAirplane(task.Result);
         }
 
         public void getCurrentSession() {
-            Session session = repository.getSavedSession();
-            view.setCurrentSession(session);
+            Task<Session> task = sessionRepository.getSavedSession();
+            Task.WaitAll(task);
+            view.setCurrentSession(task.Result);
         }
     }
 }

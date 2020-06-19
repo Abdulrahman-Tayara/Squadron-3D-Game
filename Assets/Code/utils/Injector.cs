@@ -8,7 +8,15 @@ using System.Threading.Tasks;
 namespace Assets.Code.utils {
     public class Injector {
         public static GameplayPresenter injectGameplayPresenter(GameplayView view) {
-            return new GameplayPresenterImpl(view, GameplayRepositoryImpl.getInstance(injectCahceProvider(), injectLocalStorageProivder()));
+            return new GameplayPresenterImpl(view, injectAirplanesRepository(), injectSessionRepository());
+        }
+
+        public static IAirplanesRepository injectAirplanesRepository() {
+            return AirplanesRepositoryImpl.getInstance(injectLocalStorageProivder(), injectCahceProvider(), injectJsonMapper());
+        }
+
+        public static ISessionsRepository injectSessionRepository() {
+            return SessionsRepositoryImpl.getInstance(injectLocalStorageProivder(), injectCahceProvider(), injectJsonMapper());
         }
 
         public static ICahceProvider injectCahceProvider() {
@@ -17,6 +25,10 @@ namespace Assets.Code.utils {
 
         public static ILocalStorageProvider injectLocalStorageProivder() {
             return LocalStorageProviderImpl.getInstance();
+        }
+
+        public static JsonMapper injectJsonMapper() {
+            return JsonMapper.getInstance();
         }
     }
 }

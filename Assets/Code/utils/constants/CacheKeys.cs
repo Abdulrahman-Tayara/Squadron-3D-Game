@@ -9,6 +9,6 @@ public class CacheKeys {
     public const string AIRPLANE_ID = "airplane_id";
     public const string ENVIRONMENT_ID = "environment_id";
     public const string DIFFICULTY = "difficulty";
-    public const string SAVED_SESSION = "saved_session";
+    public const string SAVED_SESSION_ID = "saved_session_id";
 }
 

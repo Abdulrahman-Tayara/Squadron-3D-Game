@@ -41,7 +41,7 @@ public class EnemyManager : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         BaseFire fire = collision.collider.GetComponent<BaseFire>();
         if (fire != null && !fire.createBy.CompareTag(gameObject.tag)) {
-                healthHandler.takdeDamage(fire.damage);
+            healthHandler.takdeDamage(fire.damage);
         }
     }
 
