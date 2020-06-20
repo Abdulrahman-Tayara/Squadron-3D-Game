@@ -24,5 +24,11 @@ class LocalStorageProviderImpl : ILocalStorageProvider {
         reader.Close();
         return data;
     }
+
+    public void writeFile(string path, string data) {
+        StreamWriter writer = new StreamWriter(path);
+        writer.Write(data);
+        writer.Close();
+    }
 }
 

@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Assets.Code.utils {
     public class InputManager {
 
-        private static ICahceProvider cahce = Injector.injectCahceProvider();
+        private static ICacheProvider cahce = Injector.injectCahceProvider();
 
         public static void changeKey(Key key, KeyCode newKey) {
             cahce.putInt(key.ToString(), (int) newKey);
@@ -24,7 +24,7 @@ namespace Assets.Code.utils {
         SPECIAL_FIRE = (int) KeyCode.Mouse0,
         BASIC_FIRE = (int) KeyCode.Mouse1,
         BOOST = (int) KeyCode.LeftShift,
-
+        PAUSE = (int) KeyCode.Escape,
     }
 }
 

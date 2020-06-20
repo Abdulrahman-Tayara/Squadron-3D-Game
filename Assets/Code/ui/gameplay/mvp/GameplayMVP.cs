@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace Assets.Code.ui.gameplay.mvp {
     public interface GameplayView {
 
+        void sessoinSaved();
+
         void setCurrentSession(Session session);
 
         void setAirplane(Airplane airplane);
@@ -15,7 +17,8 @@ namespace Assets.Code.ui.gameplay.mvp {
     public interface GameplayPresenter {
         void getCurrentSession();
 
-
         void getAirplane(int id);
+
+        void saveSession(Session session);
     }
 }

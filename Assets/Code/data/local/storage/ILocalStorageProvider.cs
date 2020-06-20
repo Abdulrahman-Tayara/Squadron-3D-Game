@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 
 public interface ILocalStorageProvider {
-    String readFile(String path);
+    string readFile(string path);
+
+    void writeFile(string path, string data);
 }
 

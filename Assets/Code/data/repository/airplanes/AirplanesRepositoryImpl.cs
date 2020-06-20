@@ -8,16 +8,16 @@ public class AirplanesRepositoryImpl : IAirplanesRepository {
     private static AirplanesRepositoryImpl INSTANCE;
 
     private ILocalStorageProvider localStorage;
-    private ICahceProvider cache;
+    private ICacheProvider cache;
     private JsonMapper jsonMapper;
 
-    private AirplanesRepositoryImpl(ILocalStorageProvider localStorage, ICahceProvider cache, JsonMapper jsonMapper) {
+    private AirplanesRepositoryImpl(ILocalStorageProvider localStorage, ICacheProvider cache, JsonMapper jsonMapper) {
         this.localStorage = localStorage;
         this.cache = cache;
         this.jsonMapper = jsonMapper;
     }
 
-    public static AirplanesRepositoryImpl getInstance(ILocalStorageProvider localStorage, ICahceProvider cache, JsonMapper jsonMapper) {
+    public static AirplanesRepositoryImpl getInstance(ILocalStorageProvider localStorage, ICacheProvider cache, JsonMapper jsonMapper) {
         if (INSTANCE == null)
             INSTANCE = new AirplanesRepositoryImpl(localStorage, cache, jsonMapper);
         return INSTANCE;
@@ -27,6 +27,13 @@ public class AirplanesRepositoryImpl : IAirplanesRepository {
             string data = localStorage.readFile(ResourcesPath.AIRPLANES_FILE);
             List<Airplane> airplanes = jsonMapper.fromJsonArray<Airplane>(data);
             return airplanes.Find(airplane => airplane.id == id);
+        });
+    }
+
+    public Task<List<Airplane>> getAirplanes() {
+        return Task.Run(() => {
+            string data = localStorage.readFile(ResourcesPath.AIRPLANES_FILE);
+            return jsonMapper.fromJsonArray<Airplane>(data);
         });
     }
 }

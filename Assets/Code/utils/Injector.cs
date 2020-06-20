@@ -1,4 +1,6 @@
 ﻿using Assets.Code.ui.gameplay.mvp;
+using Assets.Code.ui.newgame;
+using Assets.Code.ui.settings.mvp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +9,23 @@ using System.Threading.Tasks;
 
 namespace Assets.Code.utils {
     public class Injector {
+        public static SettingsPresenter injectSettingsPresenter(SettingsView view) {
+            return new SettingsPresenterImpl(view, injectGamePlayRepository());
+        }
+        public static NewGamePresenter injectNewGamePresenter(NewGameView view) {
+            return new NewGamePresenterImpl(view, injectAirplanesRepository(), injectEnvironmentRepository(), injectGamePlayRepository());
+        }
+
         public static GameplayPresenter injectGameplayPresenter(GameplayView view) {
             return new GameplayPresenterImpl(view, injectAirplanesRepository(), injectSessionRepository());
+        }
+
+        public static IGamePlayRepository injectGamePlayRepository() {
+            return GamePlayRepositoryImpl.getInstance(injectCahceProvider());
+        }
+
+        public static IEnvironmentRepository injectEnvironmentRepository() {
+            return EnvironemtRepositoryImpl.getInstance(injectLocalStorageProivder(), injectJsonMapper());
         }
 
         public static IAirplanesRepository injectAirplanesRepository() {
@@ -19,7 +36,7 @@ namespace Assets.Code.utils {
             return SessionsRepositoryImpl.getInstance(injectLocalStorageProivder(), injectCahceProvider(), injectJsonMapper());
         }
 
-        public static ICahceProvider injectCahceProvider() {
+        public static ICacheProvider injectCahceProvider() {
             return CahceProviderImpl.getInstance(JsonMapper.getInstance());
         }
 

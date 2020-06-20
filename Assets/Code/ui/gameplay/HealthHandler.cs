@@ -18,6 +18,9 @@ public class HealthHandler : MonoBehaviour {
 
     public Action onDead;
 
+    public GameObject deadExplosion;
+    public float deadExplosionTime = 2f;
+
     // Start is called before the first frame update
     void Start() {
 
@@ -27,6 +30,10 @@ public class HealthHandler : MonoBehaviour {
     void Update() {
         if (currentHealth <= 0f && !isDead) {
             if (onDead != null) {
+                if (deadExplosion != null) {
+                    GameObject explosion = Instantiate(deadExplosion, transform.position, transform.rotation);
+                    Destroy(explosion.gameObject, deadExplosionTime);
+                }
                 isDead = true;
                 onDead.Invoke();
             }
@@ -41,6 +48,7 @@ public class HealthHandler : MonoBehaviour {
 
     public void takdeDamage(float damage) {
         currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, currentHealth);
     }
 
 }

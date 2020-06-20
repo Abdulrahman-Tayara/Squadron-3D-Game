@@ -19,7 +19,9 @@ public class EnemyManager : MonoBehaviour {
 
     private void Update() {
         if (fighterTransform == null) {
-            fighterTransform = GameObject.FindGameObjectWithTag("Airplane").transform;
+            GameObject gameObject = GameObject.FindGameObjectWithTag("Airplane");
+            if (gameObject != null)
+                fighterTransform = gameObject.transform;
             return;
         }
     }

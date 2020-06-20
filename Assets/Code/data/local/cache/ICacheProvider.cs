@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-public interface ICahceProvider {
+public interface ICacheProvider {
     void putInt(String key, int value);
 
     void putFloat(string key, float value);
@@ -23,5 +23,7 @@ public interface ICahceProvider {
     bool getBoolean(string key, bool defaultValue = false);
 
     T getObject<T>(string key);
+
+    void deleteKey(string key);
 }
 

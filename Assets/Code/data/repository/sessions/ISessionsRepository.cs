@@ -9,7 +9,7 @@ public interface ISessionsRepository {
 
     Task<Session> getSessionById(int id);
 
-
+    Task<bool> saveSession(Session session);
 
 }
 

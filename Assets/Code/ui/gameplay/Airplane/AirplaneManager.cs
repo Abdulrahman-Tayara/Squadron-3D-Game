@@ -4,27 +4,14 @@ using UnityEngine;
 
 public class AirplaneManager : MonoBehaviour {
 
-    private static AirplaneManager singleton;
-
     private Airplane airplane;
     private Airplane.AirplaneAttributes airplaneAttributes;
     private GameState gameState;
-
     private HealthHandler healthHandler;
-
-    public static AirplaneManager getInstance() {
-        return singleton;
-    }
+    public bool isDead { private set; get; } = false;
 
     private void Awake() {
-        singleton = this;
         healthHandler = GetComponent<HealthHandler>();
-    }
-
-
-    // Update is called once per frame
-    void Update() {
-
     }
 
     private void initAirplane() {
@@ -33,8 +20,14 @@ public class AirplaneManager : MonoBehaviour {
         GetComponent<AirplaneScore>().score = gameState.score;
         healthHandler.setHealth(airplaneAttributes.maxHealth, gameState.health);
         healthHandler.onDead = () => {
-            Debug.Log("Player Dead");
+            isDead = true;
+            airplaneDead();
         };
+    }
+
+    private void airplaneDead() {
+        Debug.Log("Player Dead");
+        Destroy(gameObject);
     }
 
     // Called from GameController
@@ -46,16 +39,22 @@ public class AirplaneManager : MonoBehaviour {
         initAirplane();
     }
 
+    public float getCurrentHealth() {
+        return healthHandler.currentHealth;
+    }
+
+    public int getCurrentScore() {
+        return GetComponent<AirplaneScore>().score;
+    }
 
     private void OnCollisionEnter(Collision collision) {
-        BaseFire fire = collision.collider.GetComponent<BaseFire>();
+        Collider collider = collision.collider;
+        BaseFire fire = collider.GetComponent<BaseFire>();
         if (fire != null && !fire.createBy.CompareTag(gameObject.tag)) {
             healthHandler.takdeDamage(fire.damage);
         }
-
-        Collider collider = collision.collider;
         if (collider.CompareTag("Terrain")) {
-            Debug.Log("Airplane dead");
+            healthHandler.takdeDamage(50f);
         }
     }
 }

@@ -29,5 +29,12 @@ namespace Assets.Code.ui.gameplay.mvp {
             Task.WaitAll(task);
             view.setCurrentSession(task.Result);
         }
+
+        public void saveSession(Session session) {
+            Task<bool> task = sessionRepository.saveSession(session);
+            Task.WaitAll(task);
+            if (task.Result)
+                view.sessoinSaved();
+        }
     }
 }

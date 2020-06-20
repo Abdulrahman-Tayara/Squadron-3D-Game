@@ -34,7 +34,9 @@ public class Radar : MonoBehaviour {
 
     public void drawRadarDots() {
         foreach (RadarObject radarObject in this.radarObjects) {
-            Vector3 radarPosition = (radarObject.getOwner().transform.position - this.center.position);
+            if (radarObject.getOwner() == null || radarObject.getOwner().transform == null || center == null)
+                continue;
+            Vector3 radarPosition = (radarObject.getOwner().transform.position - center.position);
             float distanceToObject = Vector3.Distance(this.center.position, radarObject.getOwner().transform.position) * this.mapScale;
             float deltaY = Mathf.Atan2(radarPosition.x, radarPosition.z) * Mathf.Rad2Deg - 270 - this.center.eulerAngles.y;
             radarPosition.x = distanceToObject * Mathf.Cos(deltaY * Mathf.Deg2Rad) * -1;
