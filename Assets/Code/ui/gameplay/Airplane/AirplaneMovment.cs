@@ -7,7 +7,7 @@ public class AirplaneMovment : MonoBehaviour {
 
     public CharacterController controller;
 
-    private float airplaneSpeed;
+    public float airplaneSpeed;
     public float maxSpeed = 180f;
     public float minSpeed = 60f;
     public float speedAcceleration = 3f;
@@ -20,11 +20,10 @@ public class AirplaneMovment : MonoBehaviour {
 
 
     private void applayForwardMovement() {
-        // Forward movement
         Vector3 direction = transform.forward.normalized;
         airplaneSpeed -= transform.forward.y * speedAcceleration * Time.deltaTime;
         airplaneSpeed = Mathf.Clamp(airplaneSpeed, minSpeed, maxSpeed);
-        controller.Move(direction * (airplaneSpeed + boostValue) * Time.deltaTime);
+        controller.Move(direction * (airplaneSpeed + (airplaneSpeed > 0f  ? boostValue : 0f)) * Time.deltaTime);
     }
 
 
@@ -65,4 +64,5 @@ public class AirplaneMovment : MonoBehaviour {
         this.minSpeed = minSpeed;
         this.maxSpeed = maxSpeed;
     }
+
 }

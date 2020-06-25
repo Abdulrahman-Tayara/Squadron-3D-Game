@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Generator
   - EnemyMoveSpot
+  - Wall
   layers:
   - Default
   - TransparentFX
