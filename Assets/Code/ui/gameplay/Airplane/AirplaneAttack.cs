@@ -16,13 +16,13 @@ public class AirplaneAttack : MonoBehaviour {
     void Update() {
         if (basicAttack != null) {
             if (Input.GetKey(InputManager.geyKey(Key.BASIC_FIRE))) {
-                basicAttack.makeAttack();
+                basicAttack.attack();
             }
         }
 
         if (specialAttack != null) {
             if (Input.GetKeyDown(InputManager.geyKey(Key.SPECIAL_FIRE))) {
-                specialAttack.makeAttack();
+                specialAttack.attack();
             }
         }
     }

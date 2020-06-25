@@ -37,6 +37,7 @@ public class EnemiesManager : MonoBehaviour {
     private void difficultyChanged(DifficultyChangedEvent difficultyChangedEvent) {
         Debug.Log("Diff : " + difficultyChangedEvent.difficulty);
         enemy = EnemyFactory.createEnemyByDifficulty(difficultyChangedEvent.difficulty);
+        maxEnemies = 2 * (int) difficultyChangedEvent.difficulty;
     }
 
     private IEnumerator startGenerating() {

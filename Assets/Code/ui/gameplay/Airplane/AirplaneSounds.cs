@@ -5,12 +5,11 @@ using Assets.Code.utils;
 
 public class AirplaneSounds : MonoBehaviour {
     private float highestPitchValue, lessPitchValue, targetPitch, incrementPitch = 1f;
-    AudioSource audioSource;
+    public AudioSource boostAudioSource, gunAudioSource;
 
     // Start is called before the first frame update
     void Start() {
-        audioSource = GetComponent<AudioSource>();
-        lessPitchValue = audioSource.pitch;
+        lessPitchValue = boostAudioSource.pitch;
         highestPitchValue = lessPitchValue + 0.15f;
     }
 
@@ -21,7 +20,15 @@ public class AirplaneSounds : MonoBehaviour {
         } else {
             targetPitch = lessPitchValue;
         }
-        if (audioSource != null)
-            audioSource.pitch = Mathf.Lerp(audioSource.pitch, targetPitch, incrementPitch * Time.deltaTime);
+        if (boostAudioSource != null)
+            boostAudioSource.pitch = Mathf.Lerp(boostAudioSource.pitch, targetPitch, incrementPitch * Time.deltaTime);
+        if (gunAudioSource != null) {
+            if (Input.GetKeyDown(InputManager.geyKey(Key.BASIC_FIRE))) {
+                gunAudioSource.Play();
+            }
+            if (Input.GetKeyUp(InputManager.geyKey(Key.BASIC_FIRE))) {
+                gunAudioSource.Stop();
+            }
+        }
     }
 }

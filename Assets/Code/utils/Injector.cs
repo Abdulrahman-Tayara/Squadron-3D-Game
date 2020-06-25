@@ -1,4 +1,5 @@
 ﻿using Assets.Code.ui.gameplay.mvp;
+using Assets.Code.ui.loadGame.mvp;
 using Assets.Code.ui.newgame;
 using Assets.Code.ui.settings.mvp;
 using System;
@@ -9,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace Assets.Code.utils {
     public class Injector {
+
+        public static LoadGamePresenter injectLoadGamePresenter(LoadGameView view) {
+            return new LoadGamePresenterImpl(view, injectSessionRepository());
+        }
+
         public static SettingsPresenter injectSettingsPresenter(SettingsView view) {
             return new SettingsPresenterImpl(view, injectGamePlayRepository());
         }

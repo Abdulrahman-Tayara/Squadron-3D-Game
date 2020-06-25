@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7428380682061361657}
   - component: {fileID: 1102110226064514986}
   - component: {fileID: 2027059489046191995}
+  - component: {fileID: 3389493147211484541}
+  - component: {fileID: -373344415591716314}
   m_Layer: 0
   m_Name: Missil_06
   m_TagString: Fire
@@ -207,10 +209,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.75793374
-  m_Height: 5.002281
+  m_Radius: 0.233194
+  m_Height: 2.092842
   m_Direction: 2
-  m_Center: {x: 0.0023719072, y: 0.15037155, z: 0.259449}
+  m_Center: {x: 0.0023719072, y: 0.020485878, z: 1.6206512}
 --- !u!114 &2027059489046191995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  createBy: {fileID: 0}
+  createdBy: {fileID: 0}
   radius: 5
   explosionForce: 200
   prefabPlayDuration: 2
@@ -232,6 +234,32 @@ MonoBehaviour:
   turn: 20
   explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
   target: {fileID: 0}
+--- !u!135 &3389493147211484541
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8882604847648408637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6423105
+  m_Center: {x: 0.004807472, y: 0.17652571, z: 0.27990675}
+--- !u!114 &-373344415591716314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8882604847648408637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f6c52563808e34392fc9bcd0139a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 747357005084782793, guid: d6aa01c4a4ba2264bbd03e97012521e2, type: 3}
 --- !u!1001 &4688646421811989604
 PrefabInstance:
   m_ObjectHideFlags: 0

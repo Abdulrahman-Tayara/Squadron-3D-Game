@@ -22,11 +22,16 @@ abstract public class Attack : MonoBehaviour {
     protected BaseFire createFire(BaseFire baseFire, Vector3 position, Quaternion rotation) {
         BaseFire fire = Instantiate(baseFire, position, rotation);
         fire.damage = damage;
-        fire.createBy = transform.root.gameObject;
+        fire.createdBy = transform.root.gameObject;
         return fire;
     }
 
-    abstract public void makeAttack();
+    public void attack() {
+        if (!PauseManager.isPaused)
+            makeAttack();
+    }
+
+    abstract protected void makeAttack();
 
     public void setDamage(float damage) {
         this.damage = damage;

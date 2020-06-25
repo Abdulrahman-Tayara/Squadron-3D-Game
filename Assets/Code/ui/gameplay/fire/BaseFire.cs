@@ -6,7 +6,7 @@ public class BaseFire : MonoBehaviour {
     [HideInInspector]
     public float damage;
     
-    public GameObject createBy;
+    public GameObject createdBy;
 
     private void OnCollisionEnter(Collision collision) {
         

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+
 public class AirplanesRepositoryImpl : IAirplanesRepository {
 
     private static AirplanesRepositoryImpl INSTANCE;
@@ -25,7 +27,7 @@ public class AirplanesRepositoryImpl : IAirplanesRepository {
     public Task<Airplane> getAirplaneById(int id) {
         return Task.Run(() => {
             string data = localStorage.readFile(ResourcesPath.AIRPLANES_FILE);
-            List<Airplane> airplanes = jsonMapper.fromJsonArray<Airplane>(data);
+            List<Airplane> airplanes = jsonMapper.fromJsonArray<Airplane>(data); 
             return airplanes.Find(airplane => airplane.id == id);
         });
     }

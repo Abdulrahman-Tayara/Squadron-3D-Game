@@ -7,6 +7,9 @@ public class RegularMissileAttack : Attack
 
     private float nextTimeToFire;
 
+    [SerializeField]
+    private float fireRate = 5f;
+
     [Range(1f, 5f)]
     [SerializeField]
     private float rocketLifeTime = 3f;
@@ -22,9 +25,11 @@ public class RegularMissileAttack : Attack
     [SerializeField]
     private BaseFire rocketPrefab;
 
-    public override void makeAttack()
+    protected override void makeAttack()
     {
-        //*Quaternion.Euler(rocketRotation)
+        if (Time.time < nextTimeToFire)
+            return;
+        nextTimeToFire = Time.time + 1f / fireRate;
         BaseFire temp = createFire(rocketPrefab, throwPoint.transform.position, transform.rotation * Quaternion.Euler(rocketRotation));
        // temp.transform.rotation = Quaternion.LookRotation(-transform.forward);
         Rigidbody rb = temp.GetComponent<Rigidbody>();

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4512208415750520182}
   - component: {fileID: 5665029093487877323}
   - component: {fileID: 8426013377342580014}
+  - component: {fileID: 6851813470628938257}
   m_Layer: 0
   m_Name: Missil_07
   m_TagString: Fire
@@ -111,10 +112,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4155724
-  m_Height: 3.5600066
+  m_Radius: 0.10703808
+  m_Height: 1.2519989
   m_Direction: 2
-  m_Center: {x: -0.011139989, y: 0.11102821, z: 0.03532672}
+  m_Center: {x: 0.000092446804, y: 0.008215904, z: 1.1142519}
 --- !u!114 &5665029093487877323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +230,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &6851813470628938257
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.20619173
+  m_Height: 1.6461136
+  m_Direction: 2
+  m_Center: {x: -0.00030462444, y: 0.050083034, z: -0.24273145}
 --- !u!1001 &3899996121758591612
 PrefabInstance:
   m_ObjectHideFlags: 0

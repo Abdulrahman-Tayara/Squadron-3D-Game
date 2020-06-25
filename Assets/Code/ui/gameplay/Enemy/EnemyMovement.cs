@@ -13,14 +13,14 @@ public class EnemyMovement : MonoBehaviour {
     private float speed, dangerZone;
     private Enemy enemy;
 
-    private int targetSpot = -1;
+    private int targetSpot = -1; // moveSpot index
 
     private void Awake() {
         manager = GetComponent<EnemyManager>();
     }
 
     private void Start() {
-        StartCoroutine(startFCM());
+        StartCoroutine(startMove());
     }
 
     private void Update() {
@@ -31,8 +31,8 @@ public class EnemyMovement : MonoBehaviour {
         dangerZone = enemy != null ? enemy.dangerZone : 0f;
     }
 
-    private IEnumerator startFCM() {
-        while(true) {
+    private IEnumerator startMove() {
+        while (true) {
             checkTerrainCollision();
             if (manager.fighterTransform != null && canFollow()) // can follow the fighter
                 chaseTheFighter(speed);
@@ -50,10 +50,10 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     private void patrolMove() {
-        if (targetSpot == -1 ||
-            targetSpot != -1 && (Vector3.Distance(transform.position, moveSpots[targetSpot].transform.position) < 0.2f)) { // enemy reached to the sopt
-            int newSpot = Random.Range(0, moveSpots.Length);
-            targetSpot = newSpot == targetSpot ? (newSpot + 1) % moveSpots.Length : newSpot;
+        if (targetSpot == -1)
+            targetSpot = Random.Range(0, moveSpots.Length);
+        else if (Vector3.Distance(transform.position, moveSpots[targetSpot].transform.position) < 0.2f) { // enemy reached to the sopt
+            targetSpot = (targetSpot + 1) % moveSpots.Length;
         }
         goToSpot(targetSpot, speed);
     }
@@ -67,12 +67,13 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     private void checkTerrainCollision() {
-        float height = 0f;
-        if (Terrain.activeTerrain != null)
-            height = Terrain.activeTerrain.SampleHeight(transform.position);
-        if (height > transform.position.y) {
-            transform.position = new Vector3(transform.position.x, height <= 0f ? transform.position.y : height, transform.position.z);
+        if (Terrain.activeTerrain != null) {
+            float height = Terrain.activeTerrain.SampleHeight(transform.position);
+            if (height > transform.position.y) {
+                transform.position = new Vector3(transform.position.x, height, transform.position.z);
+            }
         }
+
     }
 
     public bool canFollow() {

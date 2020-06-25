@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour, GameplayView {
 
     private GameplayPresenter presenter;
@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour, GameplayView {
     }
 
     public void saveGame() {
-        Debug.Log("Save");
         Session getSession() {
             AirplaneManager airplaneManager = airplaneObject.GetComponent<AirplaneManager>();
             if (airplaneManager != null) {
@@ -67,6 +66,10 @@ public class GameController : MonoBehaviour, GameplayView {
         presenter.saveSession(sessionToSave);
     }
 
+    public void quitGame() {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
     // Called from presenter
     void GameplayView.setAirplane(Airplane airplane) {
         this.airplane = airplane;
@@ -78,6 +81,6 @@ public class GameController : MonoBehaviour, GameplayView {
     }
 
     public void sessoinSaved() {
-        Debug.Log("Session saved");
+        quitGame();
     }
 }

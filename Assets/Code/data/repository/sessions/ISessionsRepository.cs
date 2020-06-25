@@ -11,5 +11,9 @@ public interface ISessionsRepository {
 
     Task<bool> saveSession(Session session);
 
+    Task<List<Session>> getSessions();
+
+    Task<bool> selectSession(Session session);
+
 }
 

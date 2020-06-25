@@ -38,23 +38,13 @@ public class GunAttack : Attack {
     [SerializeField]
     private BaseFire bulletPrefab;
 
-    private AudioSource sound;
-
-    public void Start()
-    {
-        sound = transform.GetComponent<AudioSource>();
-    }
 
 
-    public override void makeAttack() {
+    protected override void makeAttack() {
         if (Time.time < nextTimeToFire)
             return;
         nextTimeToFire = Time.time + 1f / fireRate;
         muzzleFlash.Play();
-        if(sound != null && !sound.isPlaying)
-        {
-            sound.Play();
-        }
         //90f, -7f, 0f
         BaseFire bullet = createFire(bulletPrefab, firePosition.transform.position, transform.rotation * Quaternion.Euler(bulletRotation));
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();

@@ -21,7 +21,7 @@ public class MissileAttack : Attack
     private GameObject throwPoint;
     public BaseFire rocketPrefab;
 
-    public override void makeAttack() {
+    protected override void makeAttack() {
         BaseFire temp = createFire(rocketPrefab, throwPoint.transform.position, transform.rotation * Quaternion.Euler(rocketRotation));
         Rigidbody rb = temp.GetComponent<Rigidbody>();
         if (rb != null)

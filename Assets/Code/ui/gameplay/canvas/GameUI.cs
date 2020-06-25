@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour {
 
     public Text scoreText;
-    public Text healthText;
+    public Slider healthBar;
 
     private AirplaneScore airplaneScore;
     private HealthHandler airplaneHealth;
@@ -14,7 +14,6 @@ public class GameUI : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
     void Update() {
         if (airplaneScore == null) {
             airplaneScore = FindObjectOfType<AirplaneScore>();
@@ -22,12 +21,15 @@ public class GameUI : MonoBehaviour {
         }
         if (airplaneHealth == null) {
             GameObject gameObject = GameObject.FindGameObjectWithTag("Airplane");
-            if (gameObject != null)
+            if (gameObject != null) {
                 airplaneHealth = gameObject.GetComponent<HealthHandler>();
+                healthBar.maxValue = airplaneHealth.maxHealth;
+            }
             return;
         }
 
         scoreText.text = airplaneScore.score.ToString();
-        healthText.text = airplaneHealth.currentHealth.ToString();
+        healthBar.value = airplaneHealth.currentHealth;
     }
+
 }

@@ -39,6 +39,8 @@ public class HomingMissileFire : BaseFire
     }
     void FixedUpdate()
     {
+        if (target == null)
+            return;
         rb.velocity = transform.forward * speed;
         var rocketTargetRotation = Quaternion.LookRotation(target.position - transform.position);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rocketTargetRotation, turn));

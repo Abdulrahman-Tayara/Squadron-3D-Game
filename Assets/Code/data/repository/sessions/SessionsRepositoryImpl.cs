@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+
 public class SessionsRepositoryImpl : ISessionsRepository {
 
     private static SessionsRepositoryImpl INSTNCE;
@@ -51,9 +53,25 @@ public class SessionsRepositoryImpl : ISessionsRepository {
             string data = localStorage.readFile(ResourcesPath.SESSIONS_FILE);
             List<Session> sessions = jsonMapper.fromJsonArray<Session>(data);
             sessions.Add(session);
-            localStorage.writeFile(ResourcesPath.SESSIONS_FILE, jsonMapper.toJson(sessions));
+            string json = jsonMapper.toJsonArray(sessions);
+            localStorage.writeFile(ResourcesPath.SESSIONS_FILE, json);
             return true;
         });
+    }
+
+
+    public Task<List<Session>> getSessions() {
+        return Task.Run(() => {
+            string data = localStorage.readFile(ResourcesPath.SESSIONS_FILE);
+            List<Session> sessions = jsonMapper.fromJsonArray<Session>(data);
+            return sessions;
+        });
+    }
+
+
+    public Task<bool> selectSession(Session session) {
+        cahce.putInt(CacheKeys.SAVED_SESSION_ID, session.id);
+        return Task.Run(() => true);
     }
 }
 

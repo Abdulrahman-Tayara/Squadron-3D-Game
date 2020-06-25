@@ -11,12 +11,12 @@ public class AirplaneMovment : MonoBehaviour {
     public float maxSpeed = 180f;
     public float minSpeed = 60f;
     public float speedAcceleration = 3f;
-    public float rotateSpeed = 30f;
+    public float rotateSpeed = 20f;
     private float boostValue;
     
     public float minRollAngle = -45f, maxRollAngle = 45f;
     private float yaw = 0f, pitch = 0f, roll = 0f;
-    public float resetRotationSpeed = 150f;
+    public float resetRotationSpeed = 100f;
 
 
     private void applayForwardMovement() {
@@ -46,14 +46,13 @@ public class AirplaneMovment : MonoBehaviour {
 
     private void handleBoost() {
         if (Input.GetKey(InputManager.geyKey(Key.BOOST))) {
-            boostValue = maxSpeed * 0.5f;
+            boostValue = Mathf.Clamp(boostValue + 10, 0f, maxSpeed * 0.5f);
         } else {
             boostValue = Mathf.Max(0f, boostValue - 10f);
         }
     }
 
     void FixedUpdate() {
-        
         applayForwardMovement();
 
         handleRotatoin();

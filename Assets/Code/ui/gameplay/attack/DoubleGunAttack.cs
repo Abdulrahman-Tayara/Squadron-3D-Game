@@ -13,10 +13,10 @@ public class DoubleGunAttack : Attack {
         guns = GameObject.FindGameObjectsWithTag("GunAttack");
     }
 
-    public override void makeAttack() {
+    protected override void makeAttack() {
         foreach (var item in guns)
         {
-            item.GetComponent<GunAttack>().makeAttack();
+            item.GetComponent<GunAttack>().attack();
         }
     }
 }

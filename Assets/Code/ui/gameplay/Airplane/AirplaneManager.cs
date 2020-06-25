@@ -26,8 +26,8 @@ public class AirplaneManager : MonoBehaviour {
     }
 
     private void airplaneDead() {
-        Debug.Log("Player Dead");
         Destroy(gameObject);
+        FindObjectOfType<GameController>().Invoke("quitGame", 2);
     }
 
     // Called from GameController
@@ -50,11 +50,11 @@ public class AirplaneManager : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         Collider collider = collision.collider;
         BaseFire fire = collider.GetComponent<BaseFire>();
-        if (fire != null && !fire.createBy.CompareTag(gameObject.tag)) {
+        if (fire != null && !fire.createdBy.CompareTag(gameObject.tag)) {
             healthHandler.takdeDamage(fire.damage);
         }
         if (collider.CompareTag("Terrain")) {
-            healthHandler.takdeDamage(50f);
+            healthHandler.takdeDamage(10f);
         }
     }
 }

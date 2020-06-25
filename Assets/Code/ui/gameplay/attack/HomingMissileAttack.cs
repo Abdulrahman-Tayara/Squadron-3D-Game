@@ -8,17 +8,30 @@ public class HomingMissileAttack : Attack
     private GameObject throwPoint;
     [SerializeField]
     private BaseFire rocketPrefab;
+    [SerializeField]
+    private string targetTag;
 
     private Transform airplane;
+
+    public float lifeTime = 4;
+
+    private float nextTimeToFire;
+
+    [SerializeField]
+    private float fireRate = 5f;
+
     public void Start()
     {
-        airplane = GameObject.FindGameObjectWithTag("Airplane").transform;
+        airplane = transform.root;
     }
 
-    public override void makeAttack()
+    protected override void makeAttack()
     {
+        if (Time.time < nextTimeToFire)
+            return;
+        nextTimeToFire = Time.time + 1f / fireRate;
         GameObject nearest = null;
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(targetTag);
         foreach (GameObject item in objects)
         {
             if (item.GetComponent<Renderer>().isVisible)
@@ -39,6 +52,7 @@ public class HomingMissileAttack : Attack
         {
             BaseFire temp = createFire(rocketPrefab, throwPoint.transform.position, transform.rotation);
             temp.GetComponent<HomingMissileFire>().target = nearest.transform;
+            Destroy(temp.gameObject, lifeTime);
         }
     }
 }

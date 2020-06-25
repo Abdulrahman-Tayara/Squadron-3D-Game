@@ -14,7 +14,6 @@ public class EnemyAttack : MonoBehaviour {
     }
 
     void Start() {
-        attack = transform.Find("rightGun").GetComponent<GunAttack>();
     }
 
     // Update is called once per frame
@@ -25,7 +24,7 @@ public class EnemyAttack : MonoBehaviour {
         attack.damage = enemyManager.enemy != null ? enemyManager.enemy.damage : 0f;
         dangerZone = enemyManager.enemy != null ? enemyManager.enemy.dangerZone : 0f;
         if (canAttack())
-            attack.makeAttack();
+            attack.attack();
     }
 
     private bool canAttack() {

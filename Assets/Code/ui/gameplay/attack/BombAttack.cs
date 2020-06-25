@@ -17,7 +17,7 @@ public class BombAttack : Attack {
     }
 
 
-    public override void makeAttack() {
+    protected override void makeAttack() {
         BaseFire newBomb = createFire(fireObject, transform.position + offset, transform.rotation);
         Rigidbody rigidbody = newBomb.GetComponent<Rigidbody>();
         Vector3 force = (transform.forward - transform.up) * throwForce * Time.deltaTime;
