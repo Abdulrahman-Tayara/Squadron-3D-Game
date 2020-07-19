@@ -12,6 +12,7 @@ public class SettingsMenu : MonoBehaviour, SettingsView {
     private SettingsPresenter presenter;
 
     public TMP_Dropdown dropdown;
+    public GameObject pageAfterLogout;
 
     private List<Difficulty> difficulties;
     private Difficulty selectedDifficulty;
@@ -26,6 +27,22 @@ public class SettingsMenu : MonoBehaviour, SettingsView {
         changeDifficulty();
     }
 
+
+    private void fillDifficulties() {
+        // Convert difficulties list to list of string then add it to dropDown list
+        dropdown.AddOptions(difficulties.ConvertAll(difficulty => Enum.GetName(typeof(Difficulty), difficulty)));
+    }
+
+    private void changeDifficulty() {
+        presenter.changeDifficulty(selectedDifficulty);
+    }
+
+    public void logout() {
+        presenter.logout();
+    }
+
+    // Called from presenter
+
     public void setDifficulties(List<Difficulty> difficulties, Difficulty savedDifficulty) {
         this.difficulties = difficulties;
         this.selectedDifficulty = savedDifficulty;
@@ -33,12 +50,10 @@ public class SettingsMenu : MonoBehaviour, SettingsView {
         dropdown.value = ((int) selectedDifficulty) - 1;
     }
 
-    private void fillDifficulties() {
-        // Convert difficulties list to list of strign then add it to dropdown
-        dropdown.AddOptions(difficulties.ConvertAll(difficulty => Enum.GetName(typeof(Difficulty), difficulty)));
-    }
-
-    private void changeDifficulty() {
-        presenter.changeDifficulty(selectedDifficulty);
+    public void setLoggedOut() {
+        if (pageAfterLogout != null) {
+            pageAfterLogout.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
 }

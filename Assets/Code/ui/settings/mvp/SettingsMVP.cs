@@ -10,9 +10,13 @@ namespace Assets.Code.ui.settings.mvp {
         void getDifficulties();
 
         void changeDifficulty(Difficulty difficulty);
+
+        void logout();
     }
 
     public interface SettingsView {
         void setDifficulties(List<Difficulty> difficulties, Difficulty savedDifficulty);
+
+        void setLoggedOut();
     }
 }

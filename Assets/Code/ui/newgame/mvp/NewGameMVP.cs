@@ -9,6 +9,7 @@ namespace Assets.Code.ui.newgame {
         void setUserAirplanes(List<Airplane> airplanes);
 
         void setEnvironments(List<Environment> environments);
+
     }
 
     public interface NewGamePresenter {

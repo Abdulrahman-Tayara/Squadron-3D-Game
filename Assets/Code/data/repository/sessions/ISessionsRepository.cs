@@ -15,5 +15,7 @@ public interface ISessionsRepository {
 
     Task<bool> selectSession(Session session);
 
+    Task<bool> clearAllSesstions(); 
+
 }
 

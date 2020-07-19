@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,8 @@ public class JsonMapper {
     }
 
     public string toJson<T>(T model) {
-        return JsonUtility.ToJson(model);
+        //return JsonUtility.ToJson(model);
+        return JsonConvert.SerializeObject(model);
     }
 
     public string toJsonArray<T>(List<T> data) {
@@ -35,7 +37,8 @@ public class JsonMapper {
     public T fromJson<T>(string json) {
         T data = default(T);
         try {
-            data = JsonUtility.FromJson<T>(json);
+            //data = JsonUtility.FromJson<T>(json);
+            data = JsonConvert.DeserializeObject<T>(json);
         } catch (Exception e) {
             Debug.Log(e.Message);
         }
@@ -44,9 +47,10 @@ public class JsonMapper {
 
     // Used when the root of json is an array. ex : [{"id": 1}, {"id": 2}, {"id": 3}]
     public List<T> fromJsonArray<T>(string json) {
-        json = "{\"items\":" + json + "}";
+        //json = "{\"items\":" + json + "}";
         try {
-            return fromJson<Wrapper<T>>(json).items;
+            //return fromJson<Wrapper<T>>(json).items;
+            return JsonConvert.DeserializeObject<List<T>>(json);
         } catch(Exception e) {
             Debug.Log(e.Message);
             return new List<T>();

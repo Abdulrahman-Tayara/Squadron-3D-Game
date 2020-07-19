@@ -14,15 +14,15 @@ public class LoadGamePresenterImpl : LoadGamePresenter {
         this.sessionsRepository = sessionsRepository;
     }
 
-    public void getSessions() {
+    public async void getSessions() {
         Task<List<Session>> task = sessionsRepository.getSessions();
-        Task.WaitAll(task);
+        await task;
         view.setSessions(task.Result);
     }
 
-    public void selectSession(Session session) {
+    public async void selectSession(Session session) {
         Task<bool> task = sessionsRepository.selectSession(session);
-        Task.WaitAll(task);
+        await task;
         view.sessionSelected(session);
     }
 }

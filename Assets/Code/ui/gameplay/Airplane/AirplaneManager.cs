@@ -17,7 +17,7 @@ public class AirplaneManager : MonoBehaviour {
     private void initAirplane() {
         GetComponent<AirplaneMovment>().setSpeedValues(airplaneAttributes.speed, airplaneAttributes.minSpeed, airplaneAttributes.maxSpeed);
         GetComponent<AirplaneAttack>().setDamage(airplaneAttributes.basicDamage, airplaneAttributes.specialDamage);
-        GetComponent<AirplaneScore>().score = gameState.score;
+        GetComponent<AirplaneScore>().setData(gameState.score, gameState.coins);
         healthHandler.setHealth(airplaneAttributes.maxHealth, gameState.health);
         healthHandler.onDead = () => {
             isDead = true;
@@ -26,8 +26,8 @@ public class AirplaneManager : MonoBehaviour {
     }
 
     private void airplaneDead() {
+        EventBus<AirplaneDeadEvent>.getInstance().publish(new AirplaneDeadEvent(airplane));
         Destroy(gameObject);
-        FindObjectOfType<GameController>().Invoke("quitGame", 2);
     }
 
     // Called from GameController

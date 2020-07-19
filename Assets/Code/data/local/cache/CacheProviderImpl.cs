@@ -5,19 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class CahceProviderImpl : ICacheProvider {
+public class CacheProviderImpl : ICacheProvider {
 
-    private static CahceProviderImpl INSTANCE;
+    private static CacheProviderImpl INSTANCE;
 
     private JsonMapper jsonMapper;
 
-    private CahceProviderImpl(JsonMapper jsonMapper) {
+    private CacheProviderImpl(JsonMapper jsonMapper) {
         this.jsonMapper = jsonMapper;
     }
 
-    public static CahceProviderImpl getInstance(JsonMapper jsonMapper) {
+    public static CacheProviderImpl getInstance(JsonMapper jsonMapper) {
         if (INSTANCE == null)
-            INSTANCE = new CahceProviderImpl(jsonMapper);
+            INSTANCE = new CacheProviderImpl(jsonMapper);
         return INSTANCE;
     }
 

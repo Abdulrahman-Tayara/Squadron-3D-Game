@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "name": "My_Airplane",
+    "name": "Airplane1",
+    "price": 4,
     "attributes": {
       "maxHealth": 100,
       "speed": 60,
@@ -13,14 +14,15 @@
   },
   {
     "id": 2,
-    "name": "My_Airplane",
+    "name": "Airplane2",
+    "price": 6,
     "attributes": {
-      "maxHealth": 100,
-      "speed": 60,
+      "maxHealth": 150,
+      "speed": 80,
       "minSpeed": 100,
-      "maxSpeed": 200,
-      "specialDamage": 50.0,
-      "basicDamage": 30.0
+      "maxSpeed": 250,
+      "specialDamage": 60.0,
+      "basicDamage": 40.0
     }
   }
 ]

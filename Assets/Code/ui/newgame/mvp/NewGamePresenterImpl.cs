@@ -19,15 +19,15 @@ public class NewGamePresenterImpl : NewGamePresenter {
         this.gamePlayRepository = gamePlayRepository;
     }
 
-    public void getEnvironments() {
+    public async void getEnvironments() {
         Task<List<Environment>> task = environmentRepository.getEnvironments();
-        Task.WaitAll(task);
+        await task;
         view.setEnvironments(task.Result);
     }
 
-    public void getUserAirplanes() {
-        Task<List<Airplane>> task = airplanesRepository.getAirplanes();
-        Task.WaitAll(task);
+    public async void getUserAirplanes() {
+        Task<List<Airplane>> task = airplanesRepository.getUserAirplanes();
+        await task;
         view.setUserAirplanes(task.Result);
     }
 

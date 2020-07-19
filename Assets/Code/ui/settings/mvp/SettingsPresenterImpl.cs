@@ -9,9 +9,14 @@ public class SettingsPresenterImpl : SettingsPresenter {
 
     private SettingsView view;
     private IGamePlayRepository gamePlayRepository;
-    public SettingsPresenterImpl(SettingsView view, IGamePlayRepository gamePlayRepository) {
+    private ISessionsRepository sessionsRepository;
+    private IAuthRepository authRepository;
+
+    public SettingsPresenterImpl(SettingsView view, IGamePlayRepository gamePlayRepository, ISessionsRepository sessionsRepository, IAuthRepository authRepository) {
         this.view = view;
         this.gamePlayRepository = gamePlayRepository;
+        this.sessionsRepository = sessionsRepository;
+        this.authRepository = authRepository;
     }
 
     public void changeDifficulty(Difficulty difficulty) {
@@ -23,6 +28,13 @@ public class SettingsPresenterImpl : SettingsPresenter {
         Difficulty savedDifficulty = gamePlayRepository.getSavedDifficulty();
         Task.WaitAll(task);
         view.setDifficulties(task.Result, savedDifficulty);
+    }
+
+    public void logout() {
+        Task<bool> clearSessionsTask = sessionsRepository.clearAllSesstions();
+        clearSessionsTask.Wait();
+        if (authRepository.logout())
+            view.setLoggedOut();
     }
 }
 

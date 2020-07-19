@@ -26,7 +26,7 @@ public class LoadGameMenu : MonoBehaviour, LoadGameView {
 
     private void buildList() {
         listView = new ListViewAdapter<Session>(listContainer.GetComponent<RectTransform>(), listButton.gameObject, 
-            (listObject, session) => {
+            (listObject, session, position) => {
             Button button = listObject.GetComponent<Button>();
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = session.sessionName;
             button.onClick.AddListener(() => presenter.selectSession(session));
@@ -36,7 +36,7 @@ public class LoadGameMenu : MonoBehaviour, LoadGameView {
     }
 
 
-    // Called from presneter
+    // Called from presenter
 
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;

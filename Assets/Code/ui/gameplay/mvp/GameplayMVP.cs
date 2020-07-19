@@ -12,6 +12,10 @@ namespace Assets.Code.ui.gameplay.mvp {
         void setCurrentSession(Session session);
 
         void setAirplane(Airplane airplane);
+
+        void setUpdated(int score, int coins);
+
+        void setErrorConnection();
     }
 
     public interface GameplayPresenter {
@@ -20,5 +24,7 @@ namespace Assets.Code.ui.gameplay.mvp {
         void getAirplane(int id);
 
         void saveSession(Session session);
+
+        void update(int score, int coins);
     }
 }

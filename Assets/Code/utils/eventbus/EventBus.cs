@@ -31,11 +31,15 @@ public class EventBus<T> : Observable<T> where T : GameEvent {
     }
 
     public void register(Observer<T> observer, bool emittLastValue = false) {
+        if (observer == null)
+            return;
         Publisher<T> publisher = getTypedPublisher();
         publisher.register(observer, emittLastValue);
     }
 
     public void unregister(Observer<T> observer) {
+        if (observer == null)
+            return;
         Publisher<T> publisher = getTypedPublisher();
         publisher.unregister(observer);
     }

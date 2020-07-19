@@ -73,5 +73,12 @@ public class SessionsRepositoryImpl : ISessionsRepository {
         cahce.putInt(CacheKeys.SAVED_SESSION_ID, session.id);
         return Task.Run(() => true);
     }
+
+    public Task<bool> clearAllSesstions() {
+        return Task.Run(() => {
+            localStorage.writeFile(ResourcesPath.SESSIONS_FILE, jsonMapper.toJsonArray<Session>(new List<Session>()));
+            return true;
+        });
+    }
 }
 

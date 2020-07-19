@@ -8,17 +8,27 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour, GameplayView {
 
     private GameplayPresenter presenter;
-    private Terrain terrainObject;
+
     private Session currentSession;
     private Airplane airplane;
     private Difficulty currentDifficulty;
+
+    private GameState stateToSave; // use it to update the info after destroying the airplane
+
+    private Terrain terrainObject;
     private GameObject airplaneObject;
     public Vector3 airplaneStartPosition = new Vector3(0, 50, 0);
+    public GameObject finishMenu, connectoinErrorMenu;
 
+    private Observer<AirplaneDeadEvent> airplaneDeadObserver;
 
     void Start() {
         presenter = Injector.injectGameplayPresenter(this);
         presenter.getCurrentSession();
+    }
+
+    private void OnDestroy() {
+        EventBus<AirplaneDeadEvent>.getInstance().unregister(airplaneDeadObserver);
     }
 
     private void init() {
@@ -28,6 +38,12 @@ public class GameController : MonoBehaviour, GameplayView {
         }
         instantiateAirplane();
         pushDifficulty((Difficulty) currentSession.gameState.difficultyLevel);
+        airplaneDeadObserver = (airplane) => {
+            AirplaneScore airplaneScore = airplaneObject.GetComponent<AirplaneScore>();
+            stateToSave = new GameState(0f, currentSession.gameState.difficultyLevel, airplaneScore.coins, airplaneScore.score);
+            updateInfo();
+        };
+        EventBus<AirplaneDeadEvent>.getInstance().register(airplaneDeadObserver);
     }
 
     private void instantiateTerrain() {
@@ -66,9 +82,19 @@ public class GameController : MonoBehaviour, GameplayView {
         presenter.saveSession(sessionToSave);
     }
 
+
+
     public void quitGame() {
         SceneManager.LoadScene("MainMenuScene");
     }
+
+    // Calls the presenter to update user info
+    public void updateInfo() {
+        presenter.update(stateToSave.score, stateToSave.coins);
+    }
+
+
+
 
     // Called from presenter
     void GameplayView.setAirplane(Airplane airplane) {
@@ -82,5 +108,19 @@ public class GameController : MonoBehaviour, GameplayView {
 
     public void sessoinSaved() {
         quitGame();
+    }
+
+    public void setUpdated(int score, int coines) {
+        Cursor.visible = true;
+        if (finishMenu != null && finishMenu.GetComponent<FinishMenu>() != null) {
+            finishMenu.SetActive(true);
+            finishMenu.GetComponent<FinishMenu>().setData(score, coines);
+        } else
+            quitGame();
+    }
+
+    public void setErrorConnection() {
+        if (connectoinErrorMenu != null)
+            connectoinErrorMenu.SetActive(true);
     }
 }

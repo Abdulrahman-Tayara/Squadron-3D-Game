@@ -12,5 +12,8 @@ public interface IGamePlayRepository {
     void changeDifficulty(Difficulty difficulty);
 
     Difficulty getSavedDifficulty();
+
+    Task<bool> update(int newScore, int newCoins);
+
 }
 

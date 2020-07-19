@@ -27,7 +27,7 @@ public class AirplanesRepositoryImpl : IAirplanesRepository {
     public Task<Airplane> getAirplaneById(int id) {
         return Task.Run(() => {
             string data = localStorage.readFile(ResourcesPath.AIRPLANES_FILE);
-            List<Airplane> airplanes = jsonMapper.fromJsonArray<Airplane>(data); 
+            List<Airplane> airplanes = jsonMapper.fromJsonArray<Airplane>(data);
             return airplanes.Find(airplane => airplane.id == id);
         });
     }
@@ -35,8 +35,31 @@ public class AirplanesRepositoryImpl : IAirplanesRepository {
     public Task<List<Airplane>> getAirplanes() {
         return Task.Run(() => {
             string data = localStorage.readFile(ResourcesPath.AIRPLANES_FILE);
-            return jsonMapper.fromJsonArray<Airplane>(data);
+            List<Airplane> airplanes = jsonMapper.fromJsonArray<Airplane>(data);
+            return airplanes;
         });
+    }
+
+    public Task<List<Airplane>> getAirplanesByIds(params int[] ids) {
+        return getAirplanes().ContinueWith(task => {
+            if (task != null && task.Result != null) {
+                List<Airplane> airplanes = new List<Airplane>();
+                airplanes.AddRange(
+                    task.Result.FindAll(
+                        airplane => ids.Contains(airplane.id)
+                    )
+                );
+                return airplanes;
+            }
+            return null;
+        });
+    }
+
+    public Task<List<Airplane>> getUserAirplanes() {
+        User user = cache.getObject<User>(CacheKeys.USER);
+        if (user == null)
+            return getAirplanesByIds(1);
+        return getAirplanesByIds(user.airplanesId.ToArray());
     }
 }
 
