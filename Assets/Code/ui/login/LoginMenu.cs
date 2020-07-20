@@ -17,7 +17,7 @@ public class LoginMenu : MonoBehaviour, LoginView {
 
     void Start() {
         presenter = Injector.injectLoginPresenter(this);
-        //presenter.isLoggedIn();
+        presenter.isLoggedIn();
     }
 
     public void login() {
