@@ -23,7 +23,18 @@ abstract public class Attack : MonoBehaviour {
         BaseFire fire = Instantiate(baseFire, position, rotation);
         fire.damage = damage;
         fire.createdBy = transform.root.gameObject;
+        ignoreCollideWithAirplane(fire);
         return fire;
+    }
+
+    protected void ignoreCollideWithAirplane(BaseFire fire) {
+        Collider[] collidersInAirplane = transform.root.GetComponentsInChildren<Collider>();
+        Collider[] collidersInFire = fire.transform.root.GetComponentsInChildren<Collider>();
+        foreach (var item1 in collidersInAirplane) {
+            foreach (var item2 in collidersInFire) {
+                Physics.IgnoreCollision(item1, item2, true);
+            }
+        }
     }
 
     public void attack() {
