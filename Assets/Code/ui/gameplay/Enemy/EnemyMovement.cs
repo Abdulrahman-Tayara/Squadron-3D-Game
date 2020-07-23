@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour {
     private IEnumerator startMove() {
         while (true) {
             checkTerrainCollision();
-            if (manager.fighterTransform != null && canFollow()) // can follow the fighter
+            if (canFollow()) // can follow the fighter
                 chaseTheFighter(speed);
             else if (moveSpots != null && moveSpots.Length > 0) {
                 patrolMove();
@@ -52,10 +52,11 @@ public class EnemyMovement : MonoBehaviour {
     private void patrolMove() {
         if (targetSpot == -1)
             targetSpot = Random.Range(0, moveSpots.Length);
-        else if (Vector3.Distance(transform.position, moveSpots[targetSpot].transform.position) < 0.2f) { // enemy reached to the sopt
+        else if (Vector3.Distance(transform.position, moveSpots[targetSpot].transform.position) < 0.2f) { // enemy reached to the spot
             targetSpot = (targetSpot + 1) % moveSpots.Length;
         }
-        goToSpot(targetSpot, speed);
+        if (!canFollow())
+            goToSpot(targetSpot, speed);
     }
 
     private void goToSpot(int targetSpot, float speed) {
@@ -77,6 +78,7 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     public bool canFollow() {
-        return Vector3.Distance(transform.position, manager.fighterTransform.position) <= dangerZone;
+        return manager.fighterTransform != null &&
+            Vector3.Distance(transform.position, manager.fighterTransform.position) <= dangerZone;
     }
 }

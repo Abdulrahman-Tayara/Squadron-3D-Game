@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 public class ApiEndPoints {
 
-    public const string BASE_URL = "https://tropologic-seat.000webhostapp.com/api/";
+   
+    public const string BASE_URL = AppConstants.REMOTE_URL + "api/";
 
     public const string LOGIN = "auth/login";
 

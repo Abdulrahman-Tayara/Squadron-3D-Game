@@ -8,4 +8,3 @@ public interface IStoreRepository {
 
     Task<bool> buyAirplane(Airplane airplane);
 }
-

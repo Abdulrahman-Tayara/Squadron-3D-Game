@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour, GameplayView {
     public GameObject finishMenu, connectoinErrorMenu;
 
     private Observer<AirplaneDeadEvent> airplaneDeadObserver;
+    private Observer<EnemyDeadEvent> enemyDeadObserver;
 
     void Start() {
         presenter = Injector.injectGameplayPresenter(this);
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour, GameplayView {
 
     private void OnDestroy() {
         EventBus<AirplaneDeadEvent>.getInstance().unregister(airplaneDeadObserver);
+        EventBus<EnemyDeadEvent>.getInstance().unregister(enemyDeadObserver);
     }
 
     private void init() {
@@ -43,6 +45,10 @@ public class GameController : MonoBehaviour, GameplayView {
             stateToSave = new GameState(0f, currentSession.gameState.difficultyLevel, airplaneScore.coins, airplaneScore.score);
             updateInfo();
         };
+        enemyDeadObserver = (enemy) => {
+            changeDifficulty();
+        };
+        EventBus<EnemyDeadEvent>.getInstance().register(enemyDeadObserver);
         EventBus<AirplaneDeadEvent>.getInstance().register(airplaneDeadObserver);
     }
 
@@ -83,9 +89,15 @@ public class GameController : MonoBehaviour, GameplayView {
     }
 
 
-
     public void quitGame() {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    private void changeDifficulty() {
+        if (airplaneObject == null)
+            return;
+        int score = airplaneObject.GetComponent<AirplaneScore>().score;
+        EventBus<DifficultyChangedEvent>.getInstance().publish(new DifficultyChangedEvent(DifficultyFactory.getDifficulty(score)));
     }
 
     // Calls the presenter to update user info

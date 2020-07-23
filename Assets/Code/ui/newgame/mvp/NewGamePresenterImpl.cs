@@ -25,10 +25,11 @@ public class NewGamePresenterImpl : NewGamePresenter {
         view.setEnvironments(task.Result);
     }
 
-    public async void getUserAirplanes() {
+    public void getUserAirplanes() {
         Task<List<Airplane>> task = airplanesRepository.getUserAirplanes();
-        await task;
-        view.setUserAirplanes(task.Result);
+        task.GetAwaiter().OnCompleted(() => {
+            view.setUserAirplanes(task.Result);
+        });
     }
 
     public void startNewGame(int airplaneId, int environemtId) {

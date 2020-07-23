@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Airplane1",
+    "name": "KNO1982",
     "price": 4,
     "attributes": {
       "maxHealth": 100,
@@ -9,12 +9,12 @@
       "minSpeed": 100,
       "maxSpeed": 200,
       "specialDamage": 50.0,
-      "basicDamage": 30.0
+      "basicDamage": 5.0
     }
   },
   {
     "id": 2,
-    "name": "Airplane2",
+    "name": "KNKOR1892",
     "price": 6,
     "attributes": {
       "maxHealth": 150,
@@ -22,7 +22,7 @@
       "minSpeed": 100,
       "maxSpeed": 250,
       "specialDamage": 60.0,
-      "basicDamage": 40.0
+      "basicDamage": 10.0
     }
   }
 ]

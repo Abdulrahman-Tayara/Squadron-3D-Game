@@ -19,7 +19,7 @@ public class NewGameMenu : MonoBehaviour, NewGameView {
     private int airplaneIndex = 0;
     private int environmentIndex = 0;
 
-    public void Start() {
+    private void OnEnable() {
         presenter = Injector.injectNewGamePresenter(this);
         presenter.getUserAirplanes();
         presenter.getEnvironments();
@@ -61,6 +61,7 @@ public class NewGameMenu : MonoBehaviour, NewGameView {
 
     public void setUserAirplanes(List<Airplane> airplanes) {
         this.airplanes = airplanes;
+        airplanesSprites.Clear();
         foreach (Airplane airplane in airplanes) {
             airplanesSprites.Add(Resources.Load<Sprite>(ResourcesPath.AIRPLANES_IMAGES + airplane.id));
         }
