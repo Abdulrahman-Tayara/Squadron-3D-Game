@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "KNO1982",
-    "price": 4,
+    "price": 1,
     "attributes": {
       "maxHealth": 100,
       "speed": 60,
@@ -15,7 +15,7 @@
   {
     "id": 2,
     "name": "KNKOR1892",
-    "price": 6,
+    "price": 2,
     "attributes": {
       "maxHealth": 150,
       "speed": 80,
