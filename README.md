@@ -12,3 +12,4 @@ This project built using MVP design patterns and other patterns like Messaging P
 * Dynamic Game Difficulty.
 * Bot System.
 * Save/Load System
+* Score/Coins System.
