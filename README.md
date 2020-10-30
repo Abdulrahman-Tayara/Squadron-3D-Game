@@ -1,4 +1,4 @@
-# Squadron-3D-Game
+# Squadron 3D Game
 Airplanes War game, based on Unity 3D game engine.
 
 # Game Architecture
